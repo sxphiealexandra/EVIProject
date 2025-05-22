@@ -5,7 +5,7 @@ import jakarta.persistence.Id;
 
 /**
  * Entity-Klasse für Tiere, die beobachtet werden.
- * Enthält Eigenschaften wie Alter, Gewicht etc.
+ * Enthält Eigenschaften wie Alter, Gewicht etc. - Alexandra
  */
 
 

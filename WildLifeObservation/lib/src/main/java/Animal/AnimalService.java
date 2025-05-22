@@ -7,7 +7,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service //Diese Klasse übernimmt die Logik rund um das Tier-Handling
+@Service 
+/*Diese Klasse übernimmt die Logik rund um das Tier-Handling ruft Methoden
+ aus AnimalRepository auf - Alexandra*/
 
 public class AnimalService {
 	@Autowired
