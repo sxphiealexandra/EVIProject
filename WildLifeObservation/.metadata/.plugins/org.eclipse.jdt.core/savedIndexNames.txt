@@ -1,0 +1,1 @@
+INDEX VERSION 1.134+C:\Users\kerim\Desktop\HS Aalen\Semester 4\Entwicklung InfoSystem\WildLife Projekt\EVIProject\WildLifeObservation\.metadata\.plugins\org.eclipse.jdt.core
