@@ -1,17 +1,18 @@
-package Animal;
+package Animal; //Alexandra
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 
 import Genus.Genus;
 
 /**
  * Entity-Klasse für Tiere, die beobachtet werden.
- * Enthält Eigenschaften wie Alter, Gewicht etc. - Alexandra
+ * Enthält Eigenschaften wie Alter, Gewicht, Bild etc. - Alexandra
  */
 
 @Entity
@@ -26,7 +27,9 @@ public class Animal {
     private double estimatedSize;
     private double estimatedWeight;
 
-    // Verknüpfung zu Genus (N:1)
+    @Lob
+    private byte[] image; // Optionales Bild als Binärdaten zum uploaden
+
     @ManyToOne
     @JoinColumn(name = "genus_id") // Fremdschlüssel-Spalte in Animal-Tabelle
     private Genus genus;
@@ -79,6 +82,14 @@ public class Animal {
 
     public void setEstimatedWeight(double estimatedWeight) {
         this.estimatedWeight = estimatedWeight;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     public Genus getGenus() {
