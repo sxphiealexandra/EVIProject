@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-//REST-Controller für Beobachtungen
+//REST-Controller für Beobachtungen - Alexandra 
  
 @RestController
 @RequestMapping("/observations")

@@ -10,7 +10,7 @@ import Location.Location;
 
 /**
  * Observation bildet die N:M-Beziehung zwischen Animal und Location ab.
- * Enthält Infos wie Beobachtungsdatum.
+ * Enthält Infos wie Beobachtungsdatum, Zeit usw.
  */
 @Entity
 public class Observation {

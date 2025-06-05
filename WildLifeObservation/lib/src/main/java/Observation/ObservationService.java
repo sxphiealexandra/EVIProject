@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-//Service-Schicht für Beobachtungen
+//Service-Schicht für Beobachtungen - Alexandra
  
 @Service
 public class ObservationService {
