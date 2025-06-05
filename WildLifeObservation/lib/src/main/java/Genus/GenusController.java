@@ -2,6 +2,9 @@ package Genus;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import jakarta.annotation.PostConstruct;
+
 import java.util.List;
 
 /**
@@ -14,7 +17,7 @@ public class GenusController {
 
     @Autowired
     private GenusService genusService;
-
+    
     /**
      * Gibt eine Liste aller Gattungen zurück.
      * GET /genus
