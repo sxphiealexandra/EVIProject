@@ -18,24 +18,24 @@ public class AnimalController {
 	AnimalService animalService; 
 	
 	
-	@RequestMapping("/animals") //Gibt eine Liste aller Tiere zurück
+	@RequestMapping("/animal") //Gibt eine Liste aller Tiere zurück
 	public List<Animal> getAnimalList() {
 		return animalService.getAnimalList();
 	}
-	@RequestMapping("/animals/{id}") //Holt ein Tier anhand dessen ID 
+	@RequestMapping("/animal/{id}") //Holt ein Tier anhand dessen ID 
 	public Animal getAnimal(@PathVariable("id") long id) {
 		return animalService.getAnimal(id);
 		
 	}
-	@PostMapping(value="/animals") //Fügt ein Tier hinzu
+	@PostMapping(value="/animal") //Fügt ein Tier hinzu
 	public void addAnimal(@RequestBody Animal animal) {
 		animalService.addAnimal(animal);
 	}
-	@PutMapping("/animals/{id}") //Aktualisiert ein Tier über id
+	@PutMapping("/animal/{id}") //Aktualisiert ein Tier über id
 	public void updateAnimal(@PathVariable("id")long id,@RequestBody Animal animal) {
 		animalService.updateAnimal(id, animal);
 	}
-	@DeleteMapping("/animals/{id}") //Löscht ein Tier über {id}
+	@DeleteMapping("/animal/{id}") //Löscht ein Tier über {id}
 	public void deleteAnimal(@PathVariable("id")long id) {
 		animalService.deleteAnimal(id);
 	}

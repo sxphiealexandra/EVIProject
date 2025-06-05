@@ -17,24 +17,24 @@ public class LocationController {
 	@Autowired
 	LocationService locationService;
 	
-	@RequestMapping("/Location")
+	@RequestMapping("/location")
 	public List<Location> getLocation() {
 		return locationService.getLocationList();
 	}
-	@RequestMapping("/Location/{lNr}")
+	@RequestMapping("/location/{lNr}")
 	public Location getLocation(@PathVariable("lNr") long lNr) {
 		return locationService.getLocation(lNr);
 		
 	}
-	@PostMapping(value="/Location")
+	@PostMapping(value="/location")
 	public void addLocation(@RequestBody Location location) {
 		locationService.addLocation(location);
 	}
-	@PutMapping("/Location/{lNr}")
+	@PutMapping("/location/{lNr}")
 	public void updateLocation(@PathVariable("lNr")long lNr,@RequestBody Location location) {
 		locationService.updateLocation(lNr, location);
 	}
-	@DeleteMapping("/Location/{lNr}")
+	@DeleteMapping("/location/{lNr}")
 	public void deleteVideo(@PathVariable("lNr")long lNr) {
 		locationService.deleteLocation(lNr);
 	}
