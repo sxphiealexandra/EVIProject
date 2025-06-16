@@ -1,1 +1,7 @@
 /.metadata/
+
+# H2-Datenbankdateien ignorieren da sonst COMMIT ERRORS
+*.mv.db
+*.trace.db
+/data/
+lib/data/

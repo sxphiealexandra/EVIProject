@@ -18,6 +18,7 @@
         </div>
         <form id="editForm">
           <div class="form-row">
+
             <!-- Animal -->
             <div class="form-section">
               <h3>Tierdaten (Animal)</h3>
@@ -29,6 +30,9 @@
               <input type="number" name="estimatedSize" step="0.01" required />
               <label>Geschätztes Gewicht (kg):</label>
               <input type="number" name="estimatedWeight" step="0.01" required />
+
+              <label>Bild hochladen (optional):</label>
+              <input type="file" name="image" accept="image/*" />
             </div>
 
             <!-- Genus -->
@@ -67,6 +71,7 @@
               <input type="time" name="time" required />
               <button type="submit">Aktualisieren</button>
             </div>
+
           </div>
         </form>
       </div>
@@ -93,10 +98,14 @@
     document.getElementById("editForm").addEventListener("submit", async function (e) {
       e.preventDefault();
       const form = e.target;
+
       const body = {};
       new FormData(form).forEach((value, key) => {
-        body[key] = value;
+        if (key !== "image") {
+          body[key] = value;
+        }
       });
+
       body.estimatedAge = parseInt(body.estimatedAge);
       body.estimatedSize = parseFloat(body.estimatedSize);
       body.estimatedWeight = parseFloat(body.estimatedWeight);
@@ -107,7 +116,26 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body)
         });
+
         if (!res.ok) throw new Error(await res.text());
+
+        // Bild-Upload (optional)
+        const imageFile = form.image.files[0];
+        if (imageFile) {
+          const imageForm = new FormData();
+          imageForm.append('file', imageFile);
+
+          const imgRes = await fetch(`/animal/${id}/image`, {
+            method: "POST",
+            body: imageForm
+          });
+
+          if (!imgRes.ok) {
+            alert("Tier aktualisiert, aber Bild-Upload fehlgeschlagen.");
+            return;
+          }
+        }
+
         alert("✅ Tier erfolgreich aktualisiert.");
       } catch (err) {
         alert("❌ Fehler: " + err.message);
