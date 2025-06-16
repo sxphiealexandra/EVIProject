@@ -1,4 +1,4 @@
-package Animal;
+package Animal; //Alexandra
 
 import Animal.dto.AnimalFullDTO;
 import Location.Location;
@@ -8,7 +8,12 @@ import Observation.ObservationRepository;
 import Genus.Genus;
 import Genus.GenusRepository;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,25 +34,29 @@ public class AnimalService {
     @Autowired
     private ObservationRepository observationRepository;
 
+    //Gibt alle Tiere zurück:
     public List<Animal> getAnimalList() {
         List<Animal> mylist = new ArrayList<>();
         animalRepository.findAll().forEach(mylist::add);
         return mylist;
     }
-
+    
+    //Holt einzelnes Tier anhand der id 
     public Animal getAnimal(long id) {
         return animalRepository.findById(id).orElse(null);
     }
 
+    //Speichert neues Tier mit optionaler Gattung
     public void addAnimal(Animal animal) {
         Genus genus = animal.getGenus();
         if (genus != null && genus.getId() == 0) {
-            genusRepository.save(genus);
+            genusRepository.save(genus); //Gattung vorher speichern falls neu
         }
         animal.setGenus(genus);
-        animalRepository.save(animal);
+        animalRepository.save(animal); 
     }
 
+    //Aktualisiert vorhandenes Tier
     public void updateAnimal(long id, Animal animal) {
         Genus genus = animal.getGenus();
         if (genus != null && genus.getId() == 0) {
@@ -56,11 +65,13 @@ public class AnimalService {
         animal.setGenus(genus);
         animalRepository.save(animal);
     }
-
+    
+    //Löscht Tier anhand id
     public void deleteAnimal(long id) {
         animalRepository.deleteById(id);
     }
 
+    //Fügt neues Tier inkl. Gattung, Ort und Beobachtung hinzu (Klasse aus package Animal.dto)
     public void addFullAnimal(AnimalFullDTO dto) {
         Genus genus = new Genus(
             dto.latinDesignation, dto.designation, dto.description,
@@ -78,16 +89,20 @@ public class AnimalService {
         Observation observation = new Observation(dto.date, dto.time, animal, location);
         observationRepository.save(observation);
     }
-
+    
+    
+   //Aktualisiert vollständiges Tier inkl. abhängiger Daten
     public void updateFullAnimal(long id, AnimalFullDTO dto) {
         Animal existing = getAnimal(id);
         if (existing == null) return;
-
+        
+        //Tierdaten aktualisieren
         existing.setGender(dto.gender);
         existing.setEstimatedAge(dto.estimatedAge);
         existing.setEstimatedSize(dto.estimatedSize);
         existing.setEstimatedWeight(dto.estimatedWeight);
 
+        //Genus aktualisieren
         Genus genus = existing.getGenus();
         if (genus == null) genus = new Genus();
 
@@ -104,6 +119,7 @@ public class AnimalService {
         existing.setGenus(genus);
         animalRepository.save(existing);
 
+        //Beobachtung und Ort aktualisieren 
         Observation obs = observationRepository.findByAnimalId(id).stream().findFirst().orElse(null);
         if (obs != null) {
             obs.setDate(dto.date);
@@ -115,7 +131,8 @@ public class AnimalService {
             observationRepository.save(obs);
         }
     }
-
+    
+    //Löscht Tier + zugehörige Beeobachtung + Location + Gattung
     public void deleteFullAnimal(long id) {
         System.out.println("🔍 Versuche Tier mit ID " + id + " zu löschen...");
 
@@ -166,6 +183,7 @@ public class AnimalService {
         System.out.println("✅ Tier mit ID " + id + " und alle zugehörigen Daten wurden erfolgreich gelöscht.");
     }
     
+ // Holt ein vollständiges Tierobjekt mit Genus, Observation und Location
     public AnimalFullDTO getFullAnimal(long id) {
         Animal animal = animalRepository.findById(id).orElse(null);
         if (animal == null) return null;
@@ -202,5 +220,18 @@ public class AnimalService {
 
         return dto;
     }
+    
+    public boolean deleteImageForAnimal(long id) {
+        Animal animal = animalRepository.findById(id).orElse(null);
+        if (animal == null || animal.getImage() == null) {
+            return false; // Tier oder Bild existiert nicht
+        }
+
+        animal.setImage(null); // Bild auf null setzen
+        animalRepository.save(animal); // Tier aktualisieren ohne Bild
+
+        return true;
+    }
+
 
 }

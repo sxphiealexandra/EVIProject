@@ -46,4 +46,31 @@ async function deleteAnimal(id) {
   if (!response.ok) {
     throw new Error("Tier konnte nicht gelöscht werden");
   }
+
 }
+
+async function uploadImage(animalId, file) {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const response = await fetch(`/animal/${animalId}/image`, {
+    method: "POST",
+    body: formData
+  });
+
+  if (!response.ok) {
+    throw new Error("Bild konnte nicht hochgeladen werden");
+  }
+}
+
+async function deleteImage(animalId) {
+  const response = await fetch(`/animal/${animalId}/image`, {
+    method: "DELETE"
+  });
+
+  if (!response.ok) {
+    throw new Error("Bild konnte nicht gelöscht werden");
+  }
+}
+
+

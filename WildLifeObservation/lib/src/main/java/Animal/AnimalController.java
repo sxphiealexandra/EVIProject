@@ -27,37 +27,37 @@ public class AnimalController {
     @Autowired
     ObservationRepository observationRepository;
 
-    // === Alle Tiere abrufen ===
+    //Alle Tiere abrufen
     @GetMapping
     public List<Animal> getAnimalList() {
         return animalService.getAnimalList();
     }
 
-    // === Einzelnes Tier abrufen ===
+    //Einzelnes Tier abrufen
     @GetMapping("/by-id/{id}")
     public Animal getAnimal(@PathVariable("id") long id) {
         return animalService.getAnimal(id);
     }
 
-    // === Tier speichern (einfach) ===
+    //Tier speichern(einfach)
     @PostMapping
     public void addAnimal(@RequestBody Animal animal) {
         animalService.addAnimal(animal);
     }
 
-    // === Tier aktualisieren ===
+    //Tier aktualisieren
     @PutMapping("/{id}")
     public void updateAnimal(@PathVariable("id") long id, @RequestBody Animal animal) {
         animalService.updateAnimal(id, animal);
     }
 
-    // === Tier löschen ===
+    //Tier löschen
     @DeleteMapping("/{id}")
     public void deleteAnimal(@PathVariable("id") long id) {
         animalService.deleteAnimal(id);
     }
 
-    // === Bild hochladen ===
+    //Bild hochladen
     @PostMapping("/{id}/image")
     public ResponseEntity<String> uploadImage(
             @PathVariable("id") long id,
@@ -75,7 +75,7 @@ public class AnimalController {
         }
     }
 
-    // === Bild abrufen ===
+    //Bild abrufen
     @GetMapping("/{id}/image")
     public ResponseEntity<byte[]> getImage(@PathVariable("id") long id) {
         Animal animal = animalService.getAnimal(id);
@@ -86,4 +86,18 @@ public class AnimalController {
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.IMAGE_JPEG_VALUE)
                 .body(animal.getImage());
     }
+    
+    //Möglichkeit hochgeladenes Bild zu löschen - Alexandra
+    @DeleteMapping("/{id}/image")
+    public ResponseEntity<String> deleteImage(@PathVariable("id") long id) {
+        boolean deleted = animalService.deleteImageForAnimal(id);
+        if (deleted) {
+            return ResponseEntity.ok("✅ Bild erfolgreich gelöscht.");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("❌ Bild nicht gefunden oder konnte nicht gelöscht werden.");
+        }
+    }
+
+
 }

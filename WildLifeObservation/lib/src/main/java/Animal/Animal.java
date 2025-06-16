@@ -98,5 +98,9 @@ public class Animal {
 
     public void setGenus(Genus genus) {
         this.genus = genus;
-}
+    }
+    
+    public boolean hasImage() {
+        return image != null && image.length > 0;
+    }
 }
