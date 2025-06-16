@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tier aktualisieren</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/editstyles.css" />
+  <script>
+      async function redirectToEditLoader() {
+        const id = document.getElementById("animalId").value.trim();
+        const errorBox = document.getElementById("errorBox");
+        errorBox.style.display = "none";
+        errorBox.textContent = "";
+
+        if (!id || parseInt(id) <= 0) {
+          errorBox.style.display = "block";
+          errorBox.textContent = "❗ Bitte eine gültige ID eingeben.";
+          return;
+        }
+
+        try {
+          const res = await fetch(`/animal-full/${id}`);
+          console.log("📦 Statuscode:", res.status);
+
+          if (!res.ok) {
+            if (res.status === 404) {
+              errorBox.style.display = "block";
+              errorBox.textContent = "❌ Tier mit dieser ID existiert nicht.";
+            } else {
+              errorBox.style.display = "block";
+              errorBox.textContent = `⚠️ Serverfehler (Status ${res.status})`;
+            }
+            return;
+          }
+
+          const data = await res.json();
+          if (data && data.gender !== undefined && data.gender !== null) {
+            window.location.href = `edit-loader.html?id=${id}`;
+          } else {
+            errorBox.style.display = "block";
+            errorBox.textContent = "⚠️ Datenformat ungültig.";
+          }
+		  
+        } catch (e) {
+          console.error("💥 Fehler beim Abrufen:", e);
+          errorBox.style.display = "block";
+          errorBox.textContent = "❌ Netzwerkfehler beim Abrufen der Tierdaten.";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="hero">
+      <div class="overlay">
+        <div class="form-container">
+          <div class="form-header">
+            <img src="/img/LogoWildLifeObservation.png" alt="Logo" />
+            <h2>Tier aktualisieren</h2>
+          </div>
+          <div class="load-section">
+            <label for="animalId">Tier-ID eingeben:</label>
+            <input type="number" id="animalId" name="id" min="1" required />
+            <button onclick="redirectToEditLoader()">Tier laden</button>
+            <div id="errorBox" class="error-message"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html>

@@ -98,5 +98,5 @@ public class Animal {
 
     public void setGenus(Genus genus) {
         this.genus = genus;
-    }
+}
 }

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tier löschen</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/deletestyles.css" />
+</head>
+<body>
+  <div class="hero">
+    <div class="overlay">
+      <div class="page-title">
+        <img src="/img/LogoWildLifeObservation.png" alt="Logo" />
+        <h1>Tier löschen</h1>
+      </div>
+
+      <div class="form-container">
+        <form id="deleteForm">
+          <label for="id">Tier-ID:</label>
+          <input type="number" id="id" name="id" min="1" required />
+          <button type="submit">Löschen</button>
+        </form>
+        <div id="message" class="message"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("deleteForm").addEventListener("submit", async function(event) {
+      event.preventDefault();
+
+      const id = document.getElementById("id").value.trim();
+      const messageBox = document.getElementById("message");
+      messageBox.textContent = "";
+      messageBox.className = "message";
+
+      if (!id || parseInt(id) <= 0) {
+        messageBox.textContent = "❗ Ungültige Tier-ID.";
+        messageBox.classList.add("error");
+        return;
+      }
+
+      try {
+        const response = await fetch(`/animal-full/${id}`, {
+          method: "DELETE"
+        });
+
+        if (response.ok) {
+          messageBox.textContent = "✅ Tier inklusive Beobachtungen, Ort & Gattung erfolgreich gelöscht.";
+          messageBox.classList.add("success");
+        } else if (response.status === 404) {
+          const text = await response.text();
+          messageBox.textContent = `❌ ${text}`;
+          messageBox.classList.add("error");
+        } else {
+          messageBox.textContent = `⚠️ Fehler beim Löschen (Status ${response.status})`;
+          messageBox.classList.add("error");
+        }
+      } catch (err) {
+        messageBox.textContent = "❌ Netzwerkfehler: " + err.message;
+        messageBox.classList.add("error");
+      }
+    });
+  </script>
+</body>
+</html>

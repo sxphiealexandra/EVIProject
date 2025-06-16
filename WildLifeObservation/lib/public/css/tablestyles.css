@@ -1,0 +1,108 @@
+html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    .hero {
+      background: url('/img/ForestWallpaper.jpg') no-repeat center center/cover;
+      height: 100vh;
+      width: 100vw;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+
+    .page-title {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      color: white;
+      opacity: 0;
+      animation: fadeIn 1.5s ease forwards 0.5s;
+    }
+
+    .page-title img {
+      width: 60px;
+      height: auto;
+    }
+
+    .page-title h1 {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    .table-container {
+      max-width: 95%;
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      animation: fadeIn 1.5s ease forwards;
+      overflow-x: auto;
+    }
+
+    .table-container h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: black;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      color: black;
+    }
+
+    th, td {
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f4f4f4;
+    }
+
+    .action-buttons button,
+    .action-buttons a {
+      margin: 0 0.3rem;
+      font-size: 1.2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    .action-buttons button:hover {
+      color: red;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
