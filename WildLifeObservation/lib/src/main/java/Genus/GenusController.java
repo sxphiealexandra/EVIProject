@@ -35,6 +35,11 @@ public class GenusController {
     public Genus getGenus(@PathVariable long id) {
         return genusService.getGenus(id);
     }
+    
+    @GetMapping("/by-latin/{latinName}")
+    public Genus getByLatinName(@PathVariable String latinName) {
+        return genusService.findByLatinDesignation(latinName);
+    }
 
     /**
      * Fügt eine neue Gattung zur Datenbank hinzu.
@@ -62,4 +67,5 @@ public class GenusController {
     public void deleteGenus(@PathVariable long id) {
         genusService.deleteGenus(id);
     }
+
 }

@@ -1,5 +1,7 @@
 package Genus;
 
+import java.util.Optional;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,9 +11,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface GenusRepository extends CrudRepository<Genus, Long> {
+	Optional<Genus> findByLatinDesignation(String latinDesignation);
+	
+    // Eigene Query-Methoden (Derived Queries) können hier ergänzt werden
     
-    // Eigene Query-Methoden (Derived Queries) können hier ergänzt werden, z. B.:
-    // List<Genus> findByFamily(String family);
-    // Optional<Genus> findByLatinDesignation(String latinDesignation);
 
 }

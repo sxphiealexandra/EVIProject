@@ -13,9 +13,10 @@ import Observation.Observation;
 @Entity
 public class Location {
 	
-	 @Id
+		@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY) // ID wird automatisch erstellt - Kerim
 	    private Long lNr; // Primärschlüssel
+	 
 	    private String shortTitle; 
 	    private String description; 
 

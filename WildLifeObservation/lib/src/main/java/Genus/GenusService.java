@@ -33,6 +33,11 @@ public class GenusService {
     public Genus getGenus(long id) {
         return genusRepository.findById(id).orElse(null);
     }
+    
+    
+    public Genus findByLatinDesignation(String latinName) {
+        return genusRepository.findByLatinDesignation(latinName).orElse(null);
+    }
 
     /**
      * Fügt eine neue Gattung zur Datenbank hinzu.
@@ -56,4 +61,5 @@ public class GenusService {
     public void deleteGenus(long id) {
         genusRepository.deleteById(id);
     }
+    
 }

@@ -25,10 +25,15 @@ public class AnimalFullDTO {
     public String activeCycle;
     public String socialStructure;
     public String lifeSpan;
+    
+    public Long genusId; 
 
     // Observation & Location
     public LocalDate date;
     public LocalTime time;
     public String locationShortTitle;
     public String locationDescription;
+    
+    public Long locationLNr;
+
 }

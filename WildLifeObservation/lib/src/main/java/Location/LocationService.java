@@ -24,6 +24,10 @@ public class LocationService {
         locationRepository.findAll().forEach(list::add);
         return list;
     }
+    
+    public Location findByShortTitle(String shortTitle) {
+        return locationRepository.findByShortTitle(shortTitle).orElse(null);
+    }//test!
 
     public Location getLocation(long id) {
         return locationRepository.findById(id).orElse(null);

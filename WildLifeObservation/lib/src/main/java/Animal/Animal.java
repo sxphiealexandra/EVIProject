@@ -8,6 +8,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import Genus.Genus;
 
 /**
@@ -27,6 +29,7 @@ public class Animal {
     private double estimatedSize;
     private double estimatedWeight;
 
+    @JsonIgnore //Bildfeld soll nicht im JSON erscheinen sonst komplett voll mit Ziffern
     @Lob
     private byte[] image; // Optionales Bild als Binärdaten zum uploaden
 

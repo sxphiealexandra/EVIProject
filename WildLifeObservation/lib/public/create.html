@@ -41,7 +41,8 @@
             <div class="form-section">
               <h3>Gattung (Genus)</h3>
               <label>Lateinischer Name:</label>
-              <input name="latinDesignation" required />
+              <input name="latinDesignation" id="latinDesignation" required />
+              <button type="button" onclick="searchGenus()">Gattung suchen</button>
 
               <label>Deutsche Bezeichnung:</label>
               <input name="designation" required />
@@ -68,29 +69,30 @@
               <input name="lifeSpan" required />
             </div>
 
-            <!-- Observation + Location -->
-            <div class="form-section">
-              <h3>Beobachtungsort (Location)</h3>
-              <label>Titel:</label>
-              <input name="locationShortTitle" required />
+			<!-- Location/Observation -->
+			<div class="form-section">
+			  <h3>Beobachtungsort (Location)</h3>
+			  <label>Titel:</label>
+			  <input name="locationShortTitle" id="locationShortTitle" required />
+			  <button type="button" onclick="searchLocation()">Ort suchen</button>
 
-              <label>Beschreibung:</label>
-              <input name="locationDescription" required />
+			  <label>Beschreibung:</label>
+			  <input name="locationDescription" id="locationDescription" required />
 
-              <label>Datum der Beobachtung:</label>
-              <input type="date" name="date" required />
+			  <label>Datum der Beobachtung:</label>
+			  <input type="date" name="date" required />
+			  <label>Uhrzeit der Beobachtung:</label>
+			  <input type="time" name="time" required />
 
-              <label>Uhrzeit der Beobachtung:</label>
-              <input type="time" name="time" required />
+			  <button type="submit">Eintragen</button>
+			</div>
 
-              <button type="submit">Eintragen</button>
-            </div>
           </div>
         </form>
-
       </div>
     </div>
   </div>
+
   <script src="js/ajaxfunctions.js"></script>
   <script src="js/create.js"></script>
 </body>

@@ -8,12 +8,7 @@ import Observation.ObservationRepository;
 import Genus.Genus;
 import Genus.GenusRepository;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
-import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,24 +68,37 @@ public class AnimalService {
 
     //Fügt neues Tier inkl. Gattung, Ort und Beobachtung hinzu (Klasse aus package Animal.dto)
     public void addFullAnimal(AnimalFullDTO dto) {
-        Genus genus = new Genus(
-            dto.latinDesignation, dto.designation, dto.description,
-            dto.family, dto.diet, dto.reproductiveStrategy,
-            dto.activeCycle, dto.socialStructure, dto.lifeSpan
-        );
-        genusRepository.save(genus);
+    	Genus genus = genusRepository.findByLatinDesignation(dto.latinDesignation)
+                .orElseGet(() -> {
+                    Genus newGenus = new Genus(
+                        dto.latinDesignation, dto.designation, dto.description,
+                        dto.family, dto.diet, dto.reproductiveStrategy,
+                        dto.activeCycle, dto.socialStructure, dto.lifeSpan
+                    );
+                    genusRepository.save(newGenus);
+                    return newGenus;
+                });
 
         Animal animal = new Animal(dto.gender, dto.estimatedAge, dto.estimatedSize, dto.estimatedWeight, genus);
         animalRepository.save(animal);
 
-        Location location = new Location(dto.locationShortTitle, dto.locationDescription);
-        locationRepository.save(location);
+      
+
+            // ✅ Bestehende Location suchen
+            Location location = locationRepository.findByShortTitle(dto.locationShortTitle)
+                .orElseGet(() -> {
+                    // Wenn nicht gefunden: neue Location erzeugen
+                    Location newLocation = new Location(dto.locationShortTitle, dto.locationDescription);
+                    return locationRepository.save(newLocation);
+                });
 
         Observation observation = new Observation(dto.date, dto.time, animal, location);
         observationRepository.save(observation);
     }
     
     
+   
+
    //Aktualisiert vollständiges Tier inkl. abhängiger Daten
     public void updateFullAnimal(long id, AnimalFullDTO dto) {
         Animal existing = getAnimal(id);
@@ -119,17 +127,27 @@ public class AnimalService {
         existing.setGenus(genus);
         animalRepository.save(existing);
 
-        //Beobachtung und Ort aktualisieren 
+     // Beobachtung und Ort aktualisieren
+     // === 3. Beobachtung aktualisieren ===
         Observation obs = observationRepository.findByAnimalId(id).stream().findFirst().orElse(null);
         if (obs != null) {
             obs.setDate(dto.date);
             obs.setTime(dto.time);
 
-            Location loc = new Location(dto.locationShortTitle, dto.locationDescription);
-            locationRepository.save(loc);
-            obs.setLocation(loc);
+            Location loc = obs.getLocation();
+
+            if (loc != null) {
+                // Nur bestehende Location updaten – KEIN neues Objekt erzeugen
+                loc.setShortTitle(dto.locationShortTitle);
+                loc.setDescription(dto.locationDescription);
+                locationRepository.save(loc);
+                obs.setLocation(loc); // bleibt dieselbe Instanz
+            }
+
             observationRepository.save(obs);
         }
+
+
     }
     
     //Löscht Tier + zugehörige Beeobachtung + Location + Gattung
@@ -196,6 +214,7 @@ public class AnimalService {
 
         Genus genus = animal.getGenus();
         if (genus != null) {
+            dto.genusId = genus.getId(); //Genus-ID einfügen für tabelle wichtig
             dto.latinDesignation = genus.getLatinDesignation();
             dto.designation = genus.getDesignation();
             dto.description = genus.getDescription();
@@ -211,15 +230,17 @@ public class AnimalService {
         if (obs != null) {
             dto.date = obs.getDate();
             dto.time = obs.getTime();
-            Location loc = obs.getLocation();
-            if (loc != null) {
-                dto.locationShortTitle = loc.getShortTitle();
-                dto.locationDescription = loc.getDescription();
+            Location location = obs.getLocation();
+            if (location != null) {
+                dto.locationLNr = location.getlNr(); //Location-ID einfügen für Tabelle wichtig 
+                dto.locationShortTitle = location.getShortTitle();
+                dto.locationDescription = location.getDescription();
             }
         }
 
         return dto;
     }
+
     
     public boolean deleteImageForAnimal(long id) {
         Animal animal = animalRepository.findById(id).orElse(null);
@@ -232,6 +253,9 @@ public class AnimalService {
 
         return true;
     }
+    
+    
+
 
 
 }

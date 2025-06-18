@@ -33,6 +33,7 @@ html, body {
   margin-bottom: 2rem;
   color: white;
   animation: fadeIn 1.5s ease forwards 0.5s;
+  margin-right: 6rem;
 }
 
 .page-title img {
@@ -53,6 +54,7 @@ html, body {
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   animation: fadeIn 1.5s ease forwards;
   overflow-x: auto;
+  margin-right: 6rem;
 }
 
 .table-container h2 {
@@ -101,3 +103,70 @@ th {
     transform: translateY(0);
   }
 }
+
+.search-bar {
+  display: flex;
+  gap: 0.7rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.search-bar input,
+.search-bar select {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 2px solid white;
+  background: white;
+  color: black;
+  font-size: 1rem;
+}
+
+.search-bar button {
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  background: white;
+  color: black;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.search-bar button:hover {
+  background: crimson;
+  color: white;
+}
+
+
+
+
+
+
+.filter-controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter-controls input,
+.filter-controls select,
+.filter-controls button {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: none;
+}
+
+.filter-controls button {
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.filter-controls button:hover {
+  background-color: #dc143c;
+}
+
+

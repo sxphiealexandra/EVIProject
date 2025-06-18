@@ -2,43 +2,65 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tierübersicht</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/tablestyles.css">
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/tablestyles.css" />
 </head>
 <body>
   <div class="hero">
     <div class="overlay">
       <div class="page-title">
-        <img src="/img/LogoWildLifeObservation.png" alt="Logo">
-        <h1>Tabelle</h1>
+        <img src="/img/LogoWildLifeObservation.png" alt="Logo" />
+        <h1>Tierübersicht</h1>
       </div>
+
+      <div class="search-bar">
+        <select id="filterField">
+          <option value="id">Tier ID</option>
+          <option value="designation">Deutsche Bezeichnung</option>
+          <option value="latinDesignation">Lateinische Bezeichnung</option>
+          <option value="gender">Geschlecht</option>
+          <option value="estimatedAge">Alter</option>
+          <option value="estimatedSize">Größe</option>
+          <option value="estimatedWeight">Gewicht</option>
+          <option value="locationShortTitle">Ort</option>
+          <option value="locationDescription">Ortsbeschreibung</option>
+          <option value="date">Datum</option>
+          <option value="time">Uhrzeit</option>
+        </select>
+        <input type="text" id="searchInput" placeholder="Suchbegriff eingeben..." />
+        <button onclick="applyFilter()">Suchen</button>
+      </div>
+
       <div class="table-container">
         <h2>Alle Tiere</h2>
         <table>
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Deutscher Name</th>
-              <th>Lateinischer Name</th>
-              <th>Geschlecht</th>
-              <th>Alter</th>
-              <th>Größe</th>
-              <th>Gewicht</th>
+              <th>Tier ID</th>
+			  <th>Deutsch</th>
+			  <th>Latein</th>
+			  <th>Geschlecht</th>
+			  <th>Alter</th>
+			  <th>Größe</th>
+			  <th>Gewicht</th>
               <th>Ort</th>
+              <th>Ort Beschreibung</th>
               <th>Datum</th>
-              <th>Aktualisieren</th>
-              <th>Löschen</th>
+              <th>Uhrzeit</th>
+              <th>✎</th>
+              <th>🗑️</th>
             </tr>
           </thead>
           <tbody id="animalTableBody">
-            <!-- Wird dynamisch per JS gefüllt -->
+            <!-- via JS -->
           </tbody>
         </table>
       </div>
     </div>
   </div>
+
   <script src="js/ajaxfunctions.js"></script>
   <script src="js/table.js"></script>
 </body>

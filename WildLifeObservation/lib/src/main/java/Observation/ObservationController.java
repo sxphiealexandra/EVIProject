@@ -23,6 +23,8 @@ public class ObservationController {
     public Observation getObservation(@PathVariable Long id) {
         return observationService.getObservation(id);
     }
+    
+    
 
     @PostMapping
     public void addObservation(@RequestBody Observation observation) {
