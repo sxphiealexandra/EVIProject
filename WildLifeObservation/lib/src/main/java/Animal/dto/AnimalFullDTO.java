@@ -16,6 +16,7 @@ public class AnimalFullDTO {
     public double estimatedWeight;
 
     // Genus-Infos/Daten
+    public Long genusId;
     public String latinDesignation;
     public String designation;
     public String description;
@@ -26,14 +27,13 @@ public class AnimalFullDTO {
     public String socialStructure;
     public String lifeSpan;
     
-    public Long genusId; 
 
-    // Observation & Location
+    //Location
+    public Long locationLNr;
     public LocalDate date;
     public LocalTime time;
     public String locationShortTitle;
     public String locationDescription;
     
-    public Long locationLNr;
-
+    
 }
