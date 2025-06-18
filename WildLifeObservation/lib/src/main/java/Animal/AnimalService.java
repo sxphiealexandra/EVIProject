@@ -84,7 +84,7 @@ public class AnimalService {
 
       
 
-            // ✅ Bestehende Location suchen
+            // Bestehende Location suchen
             Location location = locationRepository.findByShortTitle(dto.locationShortTitle)
                 .orElseGet(() -> {
                     // Wenn nicht gefunden: neue Location erzeugen
@@ -128,7 +128,6 @@ public class AnimalService {
         animalRepository.save(existing);
 
      // Beobachtung und Ort aktualisieren
-     // === 3. Beobachtung aktualisieren ===
         Observation obs = observationRepository.findByAnimalId(id).stream().findFirst().orElse(null);
         if (obs != null) {
             obs.setDate(dto.date);

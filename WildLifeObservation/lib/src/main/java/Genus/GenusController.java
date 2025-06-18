@@ -20,7 +20,7 @@ public class GenusController {
     
     /**
      * Gibt eine Liste aller Gattungen zurück.
-     * GET /genus
+     * GET /genus - Kenan
      */
     @GetMapping
     public List<Genus> getAllGenus() {
@@ -29,18 +29,23 @@ public class GenusController {
 
     /**
      * Gibt eine einzelne Gattung anhand ihrer ID zurück.
-     * GET /genus/{id}
+     * GET /genus/{id} - Kenan
      */
     @GetMapping("/{id}")
     public Genus getGenus(@PathVariable long id) {
         return genusService.getGenus(id);
     }
     
+    
+    /**wird von create/edit-loader Verwendet für Erkennungsfunktion des Genus 
+     * über Lateinische Bezeichnung - Alexandra */
+
     @GetMapping("/by-latin/{latinName}")
     public Genus getByLatinName(@PathVariable String latinName) {
         return genusService.findByLatinDesignation(latinName);
-    }
-
+    } 
+    
+    
     /**
      * Fügt eine neue Gattung zur Datenbank hinzu.
      * POST /genus
@@ -52,7 +57,7 @@ public class GenusController {
 
     /**
      * Aktualisiert eine bestehende Gattung mit den übergebenen Daten.
-     * PUT /genus/{id}
+     * PUT /genus/{id} -Kenan
      */
     @PutMapping("/{id}")
     public void updateGenus(@PathVariable long id, @RequestBody Genus genus) {
@@ -61,7 +66,7 @@ public class GenusController {
 
     /**
      * Löscht eine Gattung anhand ihrer ID.
-     * DELETE /genus/{id}
+     * DELETE /genus/{id} - Kenan
      */
     @DeleteMapping("/{id}")
     public void deleteGenus(@PathVariable long id) {

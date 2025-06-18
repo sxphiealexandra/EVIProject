@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  * Service-Klasse zur Verarbeitung von Geschäftslogik für die Genus-Entität.
- * Verwendet das GenusRepository zur Kommunikation mit der Datenbank.
+ * Verwendet das GenusRepository zur Kommunikation mit der Datenbank. - Kenan
  */
 @Service
 public class GenusService {
@@ -18,7 +18,7 @@ public class GenusService {
 
     /**
      * Gibt alle gespeicherten Gattungen zurück.
-     * Verwendet Repository und wandelt Iterable in eine Liste um.
+     * Verwendet Repository und wandelt Iterable in eine Liste um. - Kenan
      */
     public List<Genus> getAllGenus() {
         List<Genus> list = new ArrayList<>();
@@ -35,12 +35,14 @@ public class GenusService {
     }
     
     
+    /**wird von create/edit-loader Verwendet für Erkennungsfunktion des Genus 
+     * über Lateinische Bezeichnung - Alexandra */
     public Genus findByLatinDesignation(String latinName) {
         return genusRepository.findByLatinDesignation(latinName).orElse(null);
     }
 
     /**
-     * Fügt eine neue Gattung zur Datenbank hinzu.
+     * Fügt eine neue Gattung zur Datenbank hinzu.- Kenan
      */
     public void addGenus(Genus genus) {
         genusRepository.save(genus);
@@ -48,7 +50,7 @@ public class GenusService {
 
     /**
      * Aktualisiert eine bestehende Gattung.
-     * Die ID wird gesetzt, um sicherzustellen, dass es sich um ein Update handelt.
+     * Die ID wird gesetzt, um sicherzustellen, dass es sich um ein Update handelt. - Kenan
      */
     public void updateGenus(long id, Genus genus) {
         genus.setId(id);
@@ -56,7 +58,7 @@ public class GenusService {
     }
 
     /**
-     * Löscht eine Gattung anhand ihrer ID.
+     * Löscht eine Gattung anhand ihrer ID. - Kenan
      */
     public void deleteGenus(long id) {
         genusRepository.deleteById(id);

@@ -25,6 +25,8 @@ public class LocationService {
         return list;
     }
     
+    /**wird unteranderem von create Verwendet für Erkennungsfunktion der Location 
+     * über Short Title - Alexandra */
     public Location findByShortTitle(String shortTitle) {
         return locationRepository.findByShortTitle(shortTitle).orElse(null);
     }//test!

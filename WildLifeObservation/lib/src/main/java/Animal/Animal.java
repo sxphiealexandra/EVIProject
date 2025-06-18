@@ -50,7 +50,7 @@ public class Animal {
         this.genus = genus;
     }
 
-    // Getter und Setter
+    // Getter und Setter (auch für image funktion)
     public long getId() {
         return id;
     }

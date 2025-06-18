@@ -23,13 +23,14 @@ public class LocationController {
 	public List<Location> getLocation() {
 	    return locationService.getLocationList();
 	}
-
+	
 	@GetMapping("/location/{lNr}")
 	public Location getLocation(@PathVariable("lNr") long lNr) {
 	    return locationService.getLocation(lNr);
 	}
 
-	
+	/**wird unteranderem von create Verwendet für Erkennungsfunktion der Location 
+     * über Short Title - Alexandra */
 	@GetMapping("/by-shortTitle")
 	public Location getByShortTitle(@RequestParam String shortTitle) {
 	    return locationService.findByShortTitle(shortTitle);

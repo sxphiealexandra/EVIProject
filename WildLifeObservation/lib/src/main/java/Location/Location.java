@@ -30,7 +30,8 @@ public class Location {
 	        this.shortTitle = shortTitle;
 	        this.description = description;
 	    }
-
+	    
+	    //getter und setter - Kerim
 		public Long getlNr() {
 			return lNr;
 		}

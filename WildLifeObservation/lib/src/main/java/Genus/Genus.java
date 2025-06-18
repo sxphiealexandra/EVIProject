@@ -13,7 +13,7 @@ public class Genus {
 
     @Id
     @GeneratedValue
-    private long id; // Eindeutige ID, automatisch von der Datenbank generiert
+    private long id; // Eindeutige ID, automatisch von der Datenbank generiert - Kenan
 
     private String latinDesignation;       // Lateinischer Name
     private String designation;            // Deutsche Bezeichnung
@@ -47,14 +47,14 @@ public class Genus {
         this.lifeSpan = lifeSpan;
     }
 
-    // Getter & Setter – notwendig für Zugriff und Bearbeitung durch Frameworks und Services
+    // Getter & Setter – notwendig für Zugriff und Bearbeitung durch Frameworks und Services - Kenan
 
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
-        this.id = id; // Wird z. B. beim Aktualisieren einer vorhandenen Entität genutzt
+        this.id = id; // Wird z. B. beim Aktualisieren einer vorhandenen Entität genutzt - Kenan
     }
 
     public String getLatinDesignation() {
