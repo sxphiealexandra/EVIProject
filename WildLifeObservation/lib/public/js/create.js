@@ -1,5 +1,7 @@
-let currentGenusId = null;
+let currentGenusId = null; //Merkt sich aktuelle GenusID
 
+
+//Formular wird vorbereitet und Tier wird erstellt
 document.getElementById('createForm').addEventListener('submit', async function (event) {
   event.preventDefault();
   const form = event.target;
@@ -70,6 +72,7 @@ document.getElementById('createForm').addEventListener('submit', async function 
   }
 });
 
+//sucht nach bestehnder Gattung anhand lateinischem Namen und befüllt alle Felder automatisch wenn Tier besteht
 async function searchGenus() {
   const latinName = document.getElementById("latinDesignation").value.trim().toLowerCase();
   if (!latinName) {
@@ -104,6 +107,8 @@ async function searchGenus() {
   }
 }
 
+
+//sucht nach bestehnder Location anhand short title und befüllt Felder autoatisch wenn Location besteht 
 async function searchLocation() {
   const title = document.getElementById("locationShortTitle").value.trim().toLowerCase();
   if (!title) {

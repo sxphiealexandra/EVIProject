@@ -1,5 +1,6 @@
-let allAnimalsFull = [];
+let allAnimalsFull = []; //Zwischenspeicher für alle vollständigen Tierdaten
 
+//holt alle Tiere und ergänzt Details zu Tieren anhand von animal-full (zugehöriger genus und location)
 async function loadAnimals() {
   try {
     const base = await fetch("/animal");
@@ -20,6 +21,7 @@ async function loadAnimals() {
   }
 }
 
+//baut tabellenteilen für jedes Tier auf
 function renderTable(data) {
   const tbody = document.getElementById("animalTableBody");
   tbody.innerHTML = "";
@@ -45,6 +47,7 @@ function renderTable(data) {
   }
 }
 
+//filterfunktion - filtert nach gewähltem Feld (id, deutsche bezeichnung, lat. desig., alter, usw) und Suchbegriff
 function applyFilter() {
   const field = document.getElementById("filterField").value;
   const term = document.getElementById("searchInput").value.trim().toLowerCase();
@@ -57,10 +60,12 @@ function applyFilter() {
   renderTable(filtered);
 }
 
+//durch Eingabetaste Suche/Filter auslösen
 document.getElementById("searchInput").addEventListener("keypress", function (e) {
   if (e.key === "Enter") applyFilter();
 });
 
+//löscht Tier aus Tabelle mit Bestätigung (geht auf der Seite über Mülleimer Button)
 async function deleteAnimal(id) {
   if (!confirm(`Tier mit ID ${id} wirklich löschen?`)) return;
 
@@ -77,4 +82,4 @@ async function deleteAnimal(id) {
   }
 }
 
-loadAnimals();
+loadAnimals(); //Lädt Daten beim ersten Laden der Seite

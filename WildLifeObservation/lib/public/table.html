@@ -4,17 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tierübersicht</title>
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/tablestyles.css" />
+  <link rel="stylesheet" href="css/styles.css" /> <!-- Globaler Style -->
+  <link rel="stylesheet" href="css/tablestyles.css" /> <!-- Individueller Style -->
 </head>
 <body>
   <div class="hero">
     <div class="overlay">
+	  <!-- Überschrift -->
       <div class="page-title">
         <img src="/img/LogoWildLifeObservation.png" alt="Logo" />
         <h1>Tierübersicht</h1>
       </div>
-
+      
+	  <!-- Filterbereich -->
       <div class="search-bar">
         <select id="filterField">
           <option value="id">Tier ID</option>
@@ -32,7 +34,8 @@
         <input type="text" id="searchInput" placeholder="Suchbegriff eingeben..." />
         <button onclick="applyFilter()">Suchen</button>
       </div>
-
+	  
+	  <!-- Tabelle mit allen Tieren (wird durch JS befüllt) -->
       <div class="table-container">
         <h2>Alle Tiere</h2>
         <table>
@@ -49,12 +52,12 @@
               <th>Ort Beschreibung</th>
               <th>Datum</th>
               <th>Uhrzeit</th>
-              <th>✎</th>
-              <th>🗑️</th>
+              <th>✎</th> <!-- Bearbeiten-Link auf edit-loader seite -->
+              <th>🗑️</th> <!-- Löschen-Button -->
             </tr>
           </thead>
           <tbody id="animalTableBody">
-            <!-- via JS -->
+            <!-- via JS werden hier zeilen eingefügt -->
           </tbody>
         </table>
       </div>

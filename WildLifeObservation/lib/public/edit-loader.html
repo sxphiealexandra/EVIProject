@@ -4,22 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tier bearbeiten</title>
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/createstyles.css" />
-  <link rel="stylesheet" href="css/editloaderstyles.css" />
+  <link rel="stylesheet" href="css/styles.css" /> <!-- Globaler Style -->
+  <link rel="stylesheet" href="css/createstyles.css" /> <!-- Sytel import von create damit bearbeitung gleich wie bei erstellen vom Design -->
+  <link rel="stylesheet" href="css/editloaderstyles.css" /><!-- Individueller edit-loader style -->
 </head>
 <body>
   <div class="hero">
     <div class="overlay">
       <div class="form-container">
+		<!-- Logo + Titel -->
         <div class="form-header">
           <img src="/img/LogoWildLifeObservation.png" alt="Logo" />
           <h2>Tier bearbeiten</h2>
         </div>
+		<!-- Hauptformular -->
         <form id="editForm">
           <div class="form-row">
 
-            <!-- Animal -->
+            <!-- Animal Tierdaten -->
             <div class="form-section">
               <h3>Tierdaten (Animal)</h3>
               <label>Geschlecht:</label>
@@ -47,7 +49,7 @@
               </div>
             </div>
 
-            <!-- Genus -->
+            <!-- Genus Daten -->
             <div class="form-section">
               <h3>Gattung (Genus)</h3>
               <label>Lateinischer Name:</label>
@@ -70,7 +72,7 @@
               <input name="lifeSpan" required />
             </div>
 
-            <!-- Observation & Location -->
+            <!-- Observation & Location Daten -->
             <div class="form-section">
               <h3>Beobachtungsort (Location)</h3>
               <label>Titel:</label>
@@ -92,7 +94,7 @@
       </div>
     </div>
   </div>
-  <script src="js/ajaxfunctions.js"></script>
+  <script src="js/ajaxfunctions.js"></script> 
   <script src="js/edit-loader.js"></script>
 </body>
 </html>

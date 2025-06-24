@@ -4,24 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tier löschen</title>
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/deletestyles.css" />
+  <link rel="stylesheet" href="css/styles.css" />   <!-- Globaler Style -->
+  <link rel="stylesheet" href="css/deletestyles.css" />    <!-- individueller Style -->
 </head>
 <body>
   <div class="hero">
     <div class="overlay">
+	  <!-- Titel mit Logo -->	
       <div class="page-title">
         <img src="/img/LogoWildLifeObservation.png" alt="Logo" />
         <h1>Tier löschen</h1>
       </div>
 
+	  <!-- Einfaches Formular zur ID-Eingabe -->
       <div class="form-container">
         <form id="deleteForm">
           <label for="id">Tier-ID:</label>
           <input type="number" id="id" name="id" min="1" required />
           <button type="submit">Löschen</button>
         </form>
-        <div id="message" class="message"></div>
+        <div id="message" class="message"></div> <!-- Ergebnisnachricht wenn Tier gelöscht/nicht existent/nicht möglich) -->
       </div>
     </div>
   </div>

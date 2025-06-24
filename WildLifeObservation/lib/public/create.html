@@ -4,21 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tier erstellen</title>
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/createstyles.css" />
+  <link rel="stylesheet" href="css/styles.css" /> <!-- Globales Design -->
+  <link rel="stylesheet" href="css/createstyles.css" /> <!-- Individuelles Design -->
 </head>
 <body>
   <div class="hero">
     <div class="overlay">
       <div class="form-container">
+		<!-- Seitenüberschrift + Logo -->
         <div class="form-header">
           <img src="/img/LogoWildLifeObservation.png" alt="Logo" />
           <h2>Tier erstellen</h2>
         </div>
-
+		
+		<!-- Hauptformular: Animal + Genus + Location/Observation -->
         <form id="createForm">
           <div class="form-row">
-            <!-- Animal -->
+            <!-- Abschnitt 1 (links) Animal Daten -->
             <div class="form-section">
               <h3>Tierdaten (Animal)</h3>
               <label>Geschlecht:</label>
@@ -37,7 +39,7 @@
               <input type="file" name="image" accept="image/*" />
             </div>
 
-            <!-- Genus -->
+            <!-- Abschnitt 2 (mitte) Genus Daten -->
             <div class="form-section">
               <h3>Gattung (Genus)</h3>
               <label>Lateinischer Name:</label>
@@ -69,7 +71,7 @@
               <input name="lifeSpan" required />
             </div>
 
-			<!-- Location/Observation -->
+			<!-- Abschnitt 3 (rechts) Location/Observation Daten -->
 			<div class="form-section">
 			  <h3>Beobachtungsort (Location)</h3>
 			  <label>Titel:</label>
@@ -84,7 +86,7 @@
 			  <label>Uhrzeit der Beobachtung:</label>
 			  <input type="time" name="time" required />
 
-			  <button type="submit">Eintragen</button>
+			  <button type="submit">Eintragen</button> <!-- Formular absenden -->
 			</div>
 
           </div>

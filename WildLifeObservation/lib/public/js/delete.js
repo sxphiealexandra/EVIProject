@@ -1,6 +1,8 @@
 document.getElementById("deleteForm").addEventListener("submit", async function(event) {
-      event.preventDefault();
-
+     //Holt ID aus Formular, prüft und sendet delete request 
+	//Zeigt je nach Ergebnis passende Meldung im Interface (sucess, errors)
+	event.preventDefault();
+	
       const id = document.getElementById("id").value.trim();
       const messageBox = document.getElementById("message");
       messageBox.textContent = "";

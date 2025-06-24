@@ -1,4 +1,4 @@
-// Tier mit allen Details laden (Animal + Genus + Observation + Location) ===
+//Holt Tier mit allen Details laden (Animal + Genus + Observation + Location)
 async function fetchAnimalById(id) {
   const response = await fetch(`/animal-full/${id}`); 
   if (!response.ok) {
@@ -49,6 +49,7 @@ async function deleteAnimal(id) {
 
 }
 
+//Lädt Bild hoch, dass zu einem Tier (Tiereintrag) gehört
 async function uploadImage(animalId, file) {
   const formData = new FormData();
   formData.append("file", file);
@@ -63,6 +64,7 @@ async function uploadImage(animalId, file) {
   }
 }
 
+//Löscht Bild eines Tiers
 async function deleteImage(animalId) {
   const response = await fetch(`/animal/${animalId}/image`, {
     method: "DELETE"

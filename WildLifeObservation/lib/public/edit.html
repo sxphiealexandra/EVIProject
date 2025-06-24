@@ -4,18 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tier aktualisieren</title>
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/editstyles.css" />
+  <link rel="stylesheet" href="css/styles.css" />     <!-- Globaler Style -->
+  <link rel="stylesheet" href="css/editstyles.css" />     <!-- Individueller Style -->
   
   </head>
   <body>
     <div class="hero">
       <div class="overlay">
         <div class="form-container">
+	      <!-- Logo und Titel -->	
           <div class="form-header">
             <img src="/img/LogoWildLifeObservation.png" alt="Logo" />
             <h2>Tier aktualisieren</h2>
           </div>
+		  
+		  <!-- Eingabe der Tier-ID -->
           <div class="load-section">
             <label for="animalId">Tier-ID eingeben:</label>
             <input type="number" id="animalId" name="id" min="1" required />

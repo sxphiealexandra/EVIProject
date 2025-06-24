@@ -1,4 +1,7 @@
 async function redirectToEditLoader() {
+		//Holt id aus Eingabefeld, prüft nach Gültigkeit (existiert Tier mit der Id überhaupt)
+		//wenn ja, wird auf Edit-loader Seite weitergeleitet um Tier zu bearbeiten
+		
         const id = document.getElementById("animalId").value.trim();
         const errorBox = document.getElementById("errorBox");
         errorBox.style.display = "none";

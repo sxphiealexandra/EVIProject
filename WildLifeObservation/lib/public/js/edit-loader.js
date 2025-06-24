@@ -1,5 +1,7 @@
+//holt Tier id aus Url (query parameter)
 const id = new URLSearchParams(window.location.search).get("id");
 
+//Holt tierdaten vom server, befüllt formular felder im bearbeiten formular
 async function fetchAnimal() {
   const res = await fetch(`/animal-full/${id}`);
   if (!res.ok) {
@@ -31,6 +33,7 @@ async function fetchAnimal() {
   }
 }
 
+//vorschau funktion für hochgeladenes bild zum Tier
 function previewImage(event) {
   const file = event.target.files[0];
   const preview = document.getElementById("previewImage");
@@ -47,6 +50,7 @@ function previewImage(event) {
   }
 }
 
+//löscht aktuelles Bild in Tiereintrag nach Bestätigung
 async function deleteImage() {
   const confirmDelete = confirm("Bist du sicher, dass du das Bild löschen möchtest?");
   if (!confirmDelete) return;
@@ -66,6 +70,7 @@ async function deleteImage() {
   }
 }
 
+//Speichert Änderungen an Tier, Genus und Location (inklusive aktualisiertes neues Bild)
 document.getElementById("editForm").addEventListener("submit", async function (e) {
   e.preventDefault();
   const form = e.target;
@@ -116,4 +121,4 @@ document.getElementById("editForm").addEventListener("submit", async function (e
   }
 });
 
-fetchAnimal();
+fetchAnimal(); //startet datenabruf beim laden der seite
